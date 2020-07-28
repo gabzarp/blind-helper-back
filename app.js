@@ -18,14 +18,14 @@ app.use(bodyParser());
 
 app.use(logger());
 
-app.use(mongo({
-    host: 'localhost',
-    port: 27017,
-    db: 'robotica-maluca',
-    authSource: 'admin',
-    max: 100,
-    min: 1
-}));
+// app.use(mongo({
+//     host: 'localhost',
+//     port: 27017,
+//     db: 'robotica-maluca',
+//     authSource: 'admin',
+//     max: 100,
+//     min: 1
+// }));
 
 router.get("/users",User.getAllUsers)
 .post("/user",User.createUser)
