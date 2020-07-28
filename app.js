@@ -35,4 +35,4 @@ router.get("/users",User.getAllUsers)
 .delete("/contact/:id",Contact.deleteContact)
 
 app.use(router.routes())
-app.listen(3001);
+app.listen(process.env.PORT);
