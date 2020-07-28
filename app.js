@@ -33,7 +33,7 @@ router.get("/users",User.getAllUsers)
 .get("/contact",Contact.getAllContacts)
 .post("/contact",Contact.createContact)
 .delete("/contact/:id",Contact.deleteContact)
-.post("/notify/:id",(ctx)=>{ctx.body = ctx.params.id})
+.get("/notify/:id",(ctx)=>{ctx.body = ctx.params.id})
 
 app.use(router.routes())
 app.listen(process.env.PORT);
