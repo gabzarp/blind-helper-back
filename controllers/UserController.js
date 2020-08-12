@@ -25,10 +25,16 @@ const user={
             if (result == null){
                 return false
             }
-            return bcrypt.compare(ctx.request.body.password ,result.password)
+            return { status: bcrypt.compare(ctx.request.body.password ,result.password), user: result }
         })
         .then(res => {
-            ctx.body = res;
+            console.log(res)
+            if (res.status) {
+                ctx.body = res.user
+            }
+            else{
+                ctx.body = res;
+            }
             ctx.status = 200;
         })
         .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })

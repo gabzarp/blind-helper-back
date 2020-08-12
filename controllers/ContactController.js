@@ -2,7 +2,14 @@ const mongo = require('koa-mongo')
 
 const user={
     getAllContacts: (ctx)=>{
-        return ctx.db.collection("contact").find().toArray()
+        return ctx.db.collection("contact").find()
+        .then((results)=>{
+            ctx.body = results
+            ctx.status = 200
+        })
+    },
+    getContactsByUser: (ctx)=>{
+        return ctx.db.collection("contact").find({"user": ctx.params.id}).toArray()
         .then((results)=>{
             ctx.body = results
             ctx.status = 200
