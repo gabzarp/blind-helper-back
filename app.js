@@ -34,4 +34,4 @@ router.get("/users",User.getAllUsers)
 .get("/notify/:id",(ctx)=>{ctx.body = ctx.params.id})
 
 app.use(router.routes())
-app.listen(process.env.port);
+app.listen(process.env.PORT);
