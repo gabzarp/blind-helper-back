@@ -19,10 +19,7 @@ app.use(bodyParser());
 app.use(logger());
 
 app.use(mongo({
-    host: 'localhost',
-    port: 27017,
-    db: 'robotica-maluca',
-    authSource: 'admin',
+    uri: process.env.DB_URI,
     max: 100,
     min: 1
 }));
