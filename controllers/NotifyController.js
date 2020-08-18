@@ -17,7 +17,7 @@ const notify={
                 client.messages.create({
                     body: contact.name + ', ' + user.name + ' acabou de acionar o botão de panico em seu blind helper. Link para localização: https://www.google.com/maps/place/' + ctx.params.lat +',' + ctx.params.lon,
                     to: '+55' + contact.phone.replace('(','').replace(')','').replace(' ','').replace('-',''),  // Text this number
-                    from: '+12722687192' // From a valid Twilio number
+                    from: process.env.TWILIO_PHONE // From a valid Twilio number
                 })
                 .then((message)=>{
                     console.log(message)
