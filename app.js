@@ -5,6 +5,7 @@ const cors = require('@koa/cors');
 const bodyParser = require('koa-bodyparser');
 const User = require("./controllers/UserController")
 const Contact = require("./controllers/ContactController")
+const Notify = require("./controllers/NotifyController")
 
 
 const mongo = require('koa-mongo')
@@ -30,8 +31,9 @@ router.get("/users",User.getAllUsers)
 .get("/contact",Contact.getAllContacts)
 .get("/contact-by-user/:id", Contact.getContactsByUser)
 .post("/contact",Contact.createContact)
+.post("/helper/:id",User.helperAssociate)
 .delete("/contact/:id",Contact.deleteContact)
-.get("/notify/:id",(ctx)=>{ctx.body = ctx.params.id})
+.get("/notify/:id/:lat/:lon",Notify.sendSms)
 
 app.use(router.routes())
 app.listen(process.env.PORT);

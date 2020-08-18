@@ -1,3 +1,5 @@
+const mongo = require('koa-mongo')
+
 const bcrypt = require('bcryptjs');
 const user={
     getAllUsers: (ctx)=>{
@@ -27,6 +29,14 @@ const user={
             }
             return { status: bcrypt.compare(ctx.request.body.password ,result.password), user: result }
         })
+        .then((results) => {
+            ctx.body = results;
+            ctx.status = 200;
+        })
+        .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })
+    },
+    helperAssociate: (ctx)=>{
+        return ctx.db.collection('user').findOneAndUpdate({ "_id": mongo.ObjectID(ctx.params.id) },{ $set: { serial: ctx.request.body.serial} })
         .then(res => {
             console.log(res)
             if (res.status) {
@@ -38,7 +48,7 @@ const user={
             ctx.status = 200;
         })
         .catch(err => { ctx.body = 'error: ' + err; ctx.status = 500; })
-    },
+    }
 }
 
 module.exports=user
